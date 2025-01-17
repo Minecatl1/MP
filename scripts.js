@@ -2,11 +2,15 @@ const songSelector = document.getElementById('song-selector');
 const playButton = document.getElementById('play-btn');
 const stopButton = document.getElementById('stop-btn');
 const nextButton = document.getElementById('next-btn');
+const shuffleButton = document.getElementById('shuffle-btn');
+const loopButton = document.getElementById('loop-btn');
 const albumArt = document.getElementById('album-art');
 
 let playlist = [];
 let currentSongIndex = 0;
 let audio = new Audio();
+let isShuffling = false;
+let isLooping = false;
 
 fetch('songs.json')
     .then(response => response.json())
@@ -39,13 +43,21 @@ stopButton.addEventListener('click', () => {
 });
 
 nextButton.addEventListener('click', () => {
-    currentSongIndex = (currentSongIndex + 1) % playlist.length;
-    loadSong();
+    nextSong();
+});
+
+shuffleButton.addEventListener('click', () => {
+    isShuffling = !isShuffling;
+    shuffleButton.textContent = isShuffling ? 'Shuffle On' : 'Shuffle Off';
+});
+
+loopButton.addEventListener('click', () => {
+    isLooping = !isLooping;
+    loopButton.textContent = isLooping ? 'Loop On' : 'Loop Off';
 });
 
 audio.addEventListener('ended', () => {
-    currentSongIndex = (currentSongIndex + 1) % playlist.length;
-    loadSong();
+    nextSong();
 });
 
 function loadSong() {
@@ -58,4 +70,16 @@ function loadSong() {
 function updateAlbumArt(song) {
     const albumArtPath = song.path.replace('.mp3', '.jpg').replace('.wav', '.jpg');
     albumArt.src = albumArtPath;
+}
+
+function nextSong() {
+    if (isShuffling) {
+        currentSongIndex = Math.floor(Math.random() * playlist.length);
+    } else {
+        currentSongIndex = (currentSongIndex + 1) % playlist.length;
+    }
+    loadSong();
+    if (!isLooping && currentSongIndex === 0) {
+        audio.pause();
+    }
 }
