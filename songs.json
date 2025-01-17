@@ -1,6 +1,6 @@
 [
     {
-        "name": "null.wav",
+        "name": "songs",
         "path": "assets/null.wav"
     },
     {
@@ -26,6 +26,10 @@
     {
         "name": "Nightcore - bite me.wav",
         "path": "assets/Nightcore - bite me.wav"
+    },
+    {
+        "name": "Wrong - Luh Kel.wav",
+        "path": "assets/Wrong - Luh Kel.wav"
     },
     {
         "name": "Song1.mp3",
