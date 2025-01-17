@@ -1,5 +1,4 @@
-const fileInput = document.getElementById('file-input');
-const playlistElement = document.getElementById('playlist');
+const songSelector = document.getElementById('song-selector');
 const playButton = document.getElementById('play-btn');
 const stopButton = document.getElementById('stop-btn');
 const nextButton = document.getElementById('next-btn');
@@ -9,19 +8,22 @@ let playlist = [];
 let currentSongIndex = 0;
 let audio = new Audio();
 
-fileInput.addEventListener('change', (event) => {
-    const files = event.target.files;
-    for (let i = 0; i < files.length; i++) {
-        playlist.push(files[i]);
-        const listItem = document.createElement('li');
-        listItem.textContent = files[i].name;
-        listItem.addEventListener('click', () => {
-            currentSongIndex = i;
+fetch('songs.json')
+    .then(response => response.json())
+    .then(data => {
+        playlist = data;
+        playlist.forEach((song, index) => {
+            const option = document.createElement('option');
+            option.value = song.path;
+            option.text = song.name;
+            songSelector.appendChild(option);
+        });
+        songSelector.addEventListener('change', (event) => {
+            currentSongIndex = event.target.selectedIndex;
             loadSong();
         });
-        playlistElement.appendChild(listItem);
-    }
-});
+    })
+    .catch(error => console.error('Error fetching song data:', error));
 
 playButton.addEventListener('click', () => {
     if (audio.src) {
@@ -48,12 +50,12 @@ audio.addEventListener('ended', () => {
 
 function loadSong() {
     const song = playlist[currentSongIndex];
-    audio.src = URL.createObjectURL(song);
+    audio.src = song.path;
     audio.play();
     updateAlbumArt(song);
 }
 
 function updateAlbumArt(song) {
-    const albumArtPath = song.name.replace('.mp3', '.jpg');
+    const albumArtPath = song.path.replace('.mp3', '.jpg').replace('.wav', '.jpg');
     albumArt.src = albumArtPath;
 }

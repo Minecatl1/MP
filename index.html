@@ -7,15 +7,13 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="music-player">
+    <div class="container">
         <h1>Music Player</h1>
-        <input type="file" id="file-input" multiple accept=".mp3, .wav">
-        <ul id="playlist"></ul>
-        <div id="controls">
-            <button id="play-btn">Play</button>
-            <button id="stop-btn">Stop</button>
-            <button id="next-btn">Next</button>
-        </div>
+        <select id="song-selector"></select>
+        <button id="play-btn">Play</button>
+        <button id="stop-btn">Stop</button>
+        <button id="next-btn">Next</button>
+        
         <img id="album-art" src="" alt="Album Art">
     </div>
     <script src="scripts.js"></script>
