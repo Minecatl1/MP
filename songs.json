@@ -1,5 +1,9 @@
 [
     {
+        "name": "Songs",
+        "path": "songs/null.wav"
+    },
+    {
         "name": "song2.wav",
         "path": "songs/song2.wav"
     },
