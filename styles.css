@@ -1,15 +1,17 @@
+/* styles.css */
+
 body {
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f0f0f0;
+    background: linear-gradient(to right, #6a11cb, #2575fc);
     margin: 0;
 }
 
-#music-player {
-    background-color: #fff;
+.container {
+    background-color: rgba(255, 255, 255, 0.9);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -17,27 +19,55 @@ body {
     width: 300px;
 }
 
-#playlist {
-    list-style-type: none;
-    padding: 0;
+input[type="file"], select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    box-sizing: border-box;
 }
 
-#playlist li {
-    padding: 5px;
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: rgb(6, 115, 134);
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
-}
-
-#playlist li:hover {
-    background-color: #f0f0f0;
-}
-
-#controls button {
     margin: 5px;
 }
 
-#album-art {
+button:hover {
+    background-color: #45a049;
+}
+
+img {
     width: 200px;
     height: 200px;
     object-fit: cover;
     margin-top: 20px;
+}
+
+h1, h2 {
+    color: #8f119f84;
+}
+
+select, input {
+    background-color: #077d92;
+    border: 1px solid #077d92;
+    border-radius: 5px;
+}
+
+button {
+    background: #6a11cb;
+    background: -webkit-linear-gradient(to right, #6a11cb, #2575fc);
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+}
+
+button:hover {
+    background-color: #5a10bb;
+}
+
+li {
+    padding: 5px;
+    color: #333;
 }
