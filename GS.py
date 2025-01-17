@@ -2,7 +2,7 @@ import os
 import json
 
 # Directory where the songs are stored
-songs_dir = 'songs/'
+songs_dir = 'assets/'
 
 # Get the list of songs
 songs = [f for f in os.listdir(songs_dir) if f.endswith(('.mp3', '.wav'))]
