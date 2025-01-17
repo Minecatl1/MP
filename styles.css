@@ -29,7 +29,7 @@ input[type="file"], select {
 button {
     padding: 10px 20px;
     background-color: #4CAF50;
-    color: rgb(6, 115, 134);
+    color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -48,12 +48,12 @@ img {
 }
 
 h1, h2 {
-    color: #8f119f84;
+    color: #ffffff;
 }
 
 select, input {
-    background-color: #077d92;
-    border: 1px solid #077d92;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
     border-radius: 5px;
 }
 
