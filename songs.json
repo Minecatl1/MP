@@ -1,50 +1,50 @@
 [
     {
-        "name": "Songs",
-        "path": "songs/null.wav"
+        "name": "null.wav",
+        "path": "assets/null.wav"
     },
     {
         "name": "song2.wav",
-        "path": "songs/song2.wav"
+        "path": "assets/song2.wav"
     },
     {
         "name": "I Got No Time - The Living Tombstone.wav",
-        "path": "songs/I Got No Time - The Living Tombstone.wav"
+        "path": "assets/I Got No Time - The Living Tombstone.wav"
     },
     {
         "name": "Shadow - livingston.wav",
-        "path": "songs/Shadow - livingston.wav"
+        "path": "assets/Shadow - livingston.wav"
     },
     {
         "name": "Let me in - CG5.wav",
-        "path": "songs/Let me in - CG5.wav"
+        "path": "assets/Let me in - CG5.wav"
     },
     {
         "name": "dropthebassonthestereo - CG5.wav",
-        "path": "songs/dropthebassonthestereo - CG5.wav"
+        "path": "assets/dropthebassonthestereo - CG5.wav"
     },
     {
         "name": "Nightcore - bite me.wav",
-        "path": "songs/Nightcore - bite me.wav"
+        "path": "assets/Nightcore - bite me.wav"
     },
     {
         "name": "Song1.mp3",
-        "path": "songs/Song1.mp3"
+        "path": "assets/Song1.mp3"
     },
     {
         "name": "anything can go - Cg5.wav",
-        "path": "songs/anything can go - Cg5.wav"
+        "path": "assets/anything can go - Cg5.wav"
     },
     {
         "name": "too slow - odetari.wav",
-        "path": "songs/too slow - odetari.wav"
+        "path": "assets/too slow - odetari.wav"
     },
     {
         "name": "keep up - odetari.wav",
-        "path": "songs/keep up - odetari.wav"
+        "path": "assets/keep up - odetari.wav"
     },
     {
         "name": "Repair me - CG5.wav",
-        "path": "songs/Repair me - CG5.wav"
+        "path": "assets/Repair me - CG5.wav"
     }
 ]
