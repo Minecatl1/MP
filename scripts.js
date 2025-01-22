@@ -46,7 +46,7 @@ youtubeSearchBtn.addEventListener('click', () => {
 });
 
 function linkSpotify() {
-    const clientId = 'YOUR_SPOTIFY_CLIENT_ID';
+    const clientId = 'af120aa8257f44008a5cbf84e95bfa0a';
     const redirectUri = 'http://localhost:8000/callback';  // This should be a valid URL (e.g., http://localhost:8000/callback)
     const scopes = [
         'user-read-playback-state',
