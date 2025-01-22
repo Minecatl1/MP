@@ -22,6 +22,7 @@ let isLooping = false;
 
 document.getElementById('link-spotify-btn').addEventListener('click', () => {
     linkSpotify();
+    document.getElementById('spotify-search-btn').classList.remove('hidden');
 });
 
 searchBar.addEventListener('input', () => {
