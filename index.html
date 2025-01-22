@@ -9,6 +9,13 @@
 <body>
     <div class="container">
         <h1>Music Player</h1>
+        <button id="link-spotify-btn">Link Spotify</button>
+        <input type="text" id="search-bar" placeholder="Search for music...">
+        <div id="options-menu" class="hidden">
+            <button id="local-search-btn">Search Local Files</button>
+            <button id="spotify-search-btn">Search Spotify</button>
+            <button id="youtube-search-btn">Search YouTube</button>
+        </div>
         <div id="song-list"></div>
         <div class="controls">
             <button id="play-btn">Play</button>
@@ -19,7 +26,11 @@
         </div>
         <h2>Queue</h2>
         <ul id="queue-list"></ul>
+        <div id="youtube-player" class="hidden">
+            <iframe id="youtube-iframe" width="560" height="315" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
     </div>
+    <script src="spotify_auth.js"></script>
     <script src="scripts.js"></script>
 </body>
 </html>

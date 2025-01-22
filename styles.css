@@ -32,7 +32,7 @@ body {
     margin-right: 10px;
 }
 
-input[type="file"], select {
+input[type="text"], select {
     width: 100%;
     padding: 10px;
     margin: 10px 0;
@@ -51,6 +51,10 @@ button {
 
 button:hover {
     background-color: #45a049;
+}
+
+.hidden {
+    display: none;
 }
 
 h1, h2 {
@@ -101,4 +105,8 @@ ul {
 
 .queue-item button:hover {
     background-color: #c0392b;
+}
+
+#youtube-player {
+    margin-top: 20px;
 }
