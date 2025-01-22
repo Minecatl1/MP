@@ -1,5 +1,5 @@
 const clientId = 'YOUR_SPOTIFY_CLIENT_ID';
-const redirectUri = 'YOUR_REDIRECT_URI';  // This should be a valid URL (e.g., http://localhost:8000/callback)
+const redirectUri = 'http://localhost:8000/callback';  // This should be a valid URL (e.g., http://localhost:8000/callback)
 const scopes = [
     'user-read-playback-state',
     'user-modify-playback-state',
