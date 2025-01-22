@@ -1,54 +1,57 @@
 [
     {
-        "name": "songs",
-        "path": "assets/null.wav"
-    },
-    {
-        "name": "song2.wav",
-        "path": "assets/song2.wav"
-    },
-    {
-        "name": "I Got No Time - The Living Tombstone.wav",
+        "name": "I Got No Time",
+        "author": "The Living Tombstone",
         "path": "assets/I Got No Time - The Living Tombstone.wav"
     },
     {
-        "name": "Shadow - livingston.wav",
-        "path": "assets/Shadow - livingston.wav"
-    },
-    {
-        "name": "Let me in - CG5.wav",
+        "name": "Let me in",
+        "author": "CG5",
         "path": "assets/Let me in - CG5.wav"
     },
     {
-        "name": "dropthebassonthestereo - CG5.wav",
-        "path": "assets/dropthebassonthestereo - CG5.wav"
+        "name": "Bite me",
+        "author": "AJ Dispirito",
+        "path": "assets/Bite me - AJ Dispirito.wav"
     },
     {
-        "name": "Nightcore - bite me.wav",
-        "path": "assets/Nightcore - bite me.wav"
+        "name": "Repair me",
+        "author": "CG5",
+        "path": "assets/Repair me - CG5.wav"
     },
     {
-        "name": "Wrong - Luh Kel.wav",
+        "name": "Shadow",
+        "author": "livingston",
+        "path": "assets/Shadow - livingston.wav"
+    },
+    {
+        "name": "Wrong",
+        "author": "Luh Kel",
         "path": "assets/Wrong - Luh Kel.wav"
     },
     {
-        "name": "Song1.mp3",
-        "path": "assets/Song1.mp3"
-    },
-    {
-        "name": "anything can go - Cg5.wav",
+        "name": "Anything can go",
+        "author": "Cg5",
         "path": "assets/anything can go - Cg5.wav"
     },
     {
-        "name": "too slow - odetari.wav",
-        "path": "assets/too slow - odetari.wav"
+        "name": "dropthebassonthestereo",
+        "author": "CG5",
+        "path": "assets/dropthebassonthestereo - CG5.wav"
     },
     {
-        "name": "keep up - odetari.wav",
+        "name": "Keep up",
+        "author": "Odetari",
         "path": "assets/keep up - odetari.wav"
     },
     {
-        "name": "Repair me - CG5.wav",
-        "path": "assets/Repair me - CG5.wav"
+        "name": "Too Slow",
+        "author": "Odetari",
+        "path": "assets/too slow - odetari.wav"
+    },
+    {
+        "name": "Lucid dreams",
+        "author": "Juice WRLD",
+        "path": "assets/Lucid dreams - Juice WRLD.wav"
     }
 ]
