@@ -46,7 +46,7 @@ youtubeSearchBtn.addEventListener('click', () => {
 
 function linkSpotify() {
     const clientId = 'YOUR_SPOTIFY_CLIENT_ID';
-    const redirectUri = 'YOUR_REDIRECT_URI';  // This should be a valid URL (e.g., http://localhost:8000/callback)
+    const redirectUri = 'http://localhost:8000/callback';  // This should be a valid URL (e.g., http://localhost:8000/callback)
     const scopes = [
         'user-read-playback-state',
         'user-modify-playback-state',
@@ -147,7 +147,7 @@ function searchSpotify(query) {
 }
 
 function searchYouTube(query) {
-    const apiKey = 'YOUR_YOUTUBE_API_KEY';
+    const apiKey = 'AIzaSyANMFVhZDBTigvMRtXTgqQf4hPJU47LrqM';
     fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&q=${encodeURIComponent(query)}&key=${apiKey}`)
         .then(response => response.json())
         .then(data => {
