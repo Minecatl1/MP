@@ -1,12 +1,13 @@
-const songSelector = document.getElementById('song-selector');
+const songList = document.getElementById('song-list');
 const playButton = document.getElementById('play-btn');
 const stopButton = document.getElementById('stop-btn');
 const nextButton = document.getElementById('next-btn');
 const shuffleButton = document.getElementById('shuffle-btn');
 const loopButton = document.getElementById('loop-btn');
-const albumArt = document.getElementById('album-art');
+const queueList = document.getElementById('queue-list');
 
 let playlist = [];
+let queue = [];
 let currentSongIndex = 0;
 let audio = new Audio();
 let isShuffling = false;
@@ -17,14 +18,16 @@ fetch('songs.json')
     .then(data => {
         playlist = data;
         playlist.forEach((song, index) => {
-            const option = document.createElement('option');
-            option.value = song.path;
-            option.text = song.name;
-            songSelector.appendChild(option);
-        });
-        songSelector.addEventListener('change', (event) => {
-            currentSongIndex = event.target.selectedIndex;
-            loadSong();
+            const songItem = document.createElement('div');
+            songItem.className = 'song-item';
+            songItem.innerHTML = `
+                <img src="${song.path.replace('.mp3', '.jpg').replace('.wav', '.jpg')}" alt="Album Art">
+                <span>${song.name} - ${song.author}</span>
+            `;
+            songItem.addEventListener('click', () => {
+                addToQueue(index);
+            });
+            songList.appendChild(songItem);
         });
     })
     .catch(error => console.error('Error fetching song data:', error));
@@ -32,8 +35,8 @@ fetch('songs.json')
 playButton.addEventListener('click', () => {
     if (audio.src) {
         audio.play();
-    } else if (playlist.length > 0) {
-        loadSong();
+    } else if (queue.length > 0) {
+        loadSong(queue[0]);
     }
 });
 
@@ -60,26 +63,50 @@ audio.addEventListener('ended', () => {
     nextSong();
 });
 
-function loadSong() {
-    const song = playlist[currentSongIndex];
+function loadSong(index) {
+    const song = playlist[index];
     audio.src = song.path;
     audio.play();
-    updateAlbumArt(song);
-}
-
-function updateAlbumArt(song) {
-    const albumArtPath = song.path.replace('.mp3', '.jpg').replace('.wav', '.jpg');
-    albumArt.src = albumArtPath;
+    if (!isLooping) {
+        queue.shift(); // Remove the song from the queue once it's played
+        updateQueueDisplay();
+    }
 }
 
 function nextSong() {
     if (isShuffling) {
-        currentSongIndex = Math.floor(Math.random() * playlist.length);
+        const randomIndex = Math.floor(Math.random() * queue.length);
+        loadSong(queue[randomIndex]);
+        queue.splice(randomIndex, 1); // Remove the played song from the queue
     } else {
-        currentSongIndex = (currentSongIndex + 1) % playlist.length;
+        if (queue.length > 0) {
+            loadSong(queue[0]);
+        } else {
+            audio.pause();
+        }
     }
-    loadSong();
-    if (!isLooping && currentSongIndex === 0) {
-        audio.pause();
-    }
+}
+
+function addToQueue(index) {
+    queue.push(index);
+    updateQueueDisplay();
+}
+
+function removeFromQueue(index) {
+    queue.splice(index, 1);
+    updateQueueDisplay();
+}
+
+function updateQueueDisplay() {
+    queueList.innerHTML = '';
+    queue.forEach((songIndex, idx) => {
+        const song = playlist[songIndex];
+        const queueItem = document.createElement('li');
+        queueItem.className = 'queue-item';
+        queueItem.innerHTML = `
+            <span>${song.name} - ${song.author}</span>
+            <button onclick="removeFromQueue(${idx})">Remove</button>
+        `;
+        queueList.appendChild(queueItem);
+    });
 }
