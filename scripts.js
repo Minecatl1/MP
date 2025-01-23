@@ -20,6 +20,15 @@ let audio = new Audio();
 let isShuffling = false;
 let isLooping = false;
 
+// Fetch playlist from songs.json
+fetch('songs.json')
+    .then(response => response.json())
+    .then(data => {
+        playlist = data;
+        console.log('Playlist loaded:', playlist);
+    })
+    .catch(error => console.error('Error fetching playlist:', error));
+
 document.getElementById('link-spotify-btn')?.addEventListener('click', () => {
     linkSpotify();
     document.getElementById('spotify-search-btn').classList.remove('hidden');
