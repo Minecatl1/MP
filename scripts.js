@@ -20,16 +20,16 @@ let audio = new Audio();
 let isShuffling = false;
 let isLooping = false;
 
-document.getElementById('link-spotify-btn').addEventListener('click', () => {
+document.getElementById('link-spotify-btn')?.addEventListener('click', () => {
     linkSpotify();
     document.getElementById('spotify-search-btn').classList.remove('hidden');
 });
 
-document.getElementById('link-youtube-btn').addEventListener('click', () => {
+document.getElementById('link-youtube-btn')?.addEventListener('click', () => {
     alert("YouTube linked! Ready for search.");
 });
 
-searchBar.addEventListener('input', () => {
+searchBar?.addEventListener('input', () => {
     if (searchBar.value) {
         optionsMenu.classList.remove('hidden');
     } else {
@@ -37,21 +37,21 @@ searchBar.addEventListener('input', () => {
     }
 });
 
-localSearchBtn.addEventListener('click', () => {
+localSearchBtn?.addEventListener('click', () => {
     searchLocalFiles(searchBar.value);
 });
 
-spotifySearchBtn.addEventListener('click', () => {
+spotifySearchBtn?.addEventListener('click', () => {
     searchSpotify(searchBar.value);
 });
 
-youtubeSearchBtn.addEventListener('click', () => {
+youtubeSearchBtn?.addEventListener('click', () => {
     searchYouTube(searchBar.value);
 });
 
 function linkSpotify() {
     const clientId = 'af120aa8257f44008a5cbf84e95bfa0a';
-    const redirectUri = 'http://localhost/';  // This should be a valid URL (e.g., http://localhost:8000/callback)
+    const redirectUri = 'https://minecatl1.github.io/MP/callback';  // Your website's redirect URI
     const scopes = [
         'user-read-playback-state',
         'user-modify-playback-state',
@@ -195,13 +195,13 @@ function updateQueueDisplay() {
     });
 }
 
-playButton.addEventListener('click', () => {
+playButton?.addEventListener('click', () => {
     if (queue.length > 0) {
         loadSong(0);
     }
 });
 
-stopButton.addEventListener('click', () => {
+stopButton?.addEventListener('click', () => {
     if (audio.src) {
         audio.pause();
         audio.currentTime = 0;
@@ -211,16 +211,16 @@ stopButton.addEventListener('click', () => {
     }
 });
 
-nextButton.addEventListener('click', () => {
+nextButton?.addEventListener('click', () => {
     nextSong();
 });
 
-shuffleButton.addEventListener('click', () => {
+shuffleButton?.addEventListener('click', () => {
     isShuffling = !isShuffling;
     shuffleButton.textContent = isShuffling ? 'Shuffle On' : 'Shuffle Off';
 });
 
-loopButton.addEventListener('click', () => {
+loopButton?.addEventListener('click', () => {
     isLooping = !isLooping;
     loopButton.textContent = isLooping ? 'Loop On' : 'Loop Off';
 });
@@ -244,14 +244,9 @@ function nextSong() {
     if (isShuffling) {
         const randomIndex = Math.floor(Math.random() * queue.length);
         loadSong(randomIndex);
-
     } else {
         if (queue.length > 0) {
             loadSong(0);
-        } else if (isLooping) {
-            loadSong(0);
-        } else {
-            audio.pause();
         }
     }
 }
