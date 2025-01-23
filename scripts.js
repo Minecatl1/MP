@@ -1,3 +1,4 @@
+const songListContainer = document.getElementById('song-list-container');
 const songList = document.getElementById('song-list');
 const playButton = document.getElementById('play-btn');
 const stopButton = document.getElementById('stop-btn');
@@ -6,7 +7,7 @@ const shuffleButton = document.getElementById('shuffle-btn');
 const loopButton = document.getElementById('loop-btn');
 const queueList = document.getElementById('queue-list');
 const searchBar = document.getElementById('search-bar');
-const optionsMenu = document.getElementById('options-menu');
+const searchOptions = document.getElementById('search-options');
 const localSearchBtn = document.getElementById('local-search-btn');
 const spotifySearchBtn = document.getElementById('spotify-search-btn');
 const youtubeSearchBtn = document.getElementById('youtube-search-btn');
@@ -37,26 +38,18 @@ document.getElementById('link-spotify-btn')?.addEventListener('click', () => {
 document.getElementById('link-youtube-btn')?.addEventListener('click', () => {
     alert("YouTube linked! Ready for search.");
 });
-
-searchBar?.addEventListener('input', () => {
-    if (searchBar.value) {
-        optionsMenu.classList.remove('hidden');
-    } else {
-        optionsMenu.classList.add('hidden');
+// search bar search system
+searchBar?.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+        const selectedOption = searchOptions.value;
+        if (selectedOption === 'local') {
+            searchLocalFiles(searchBar.value);
+        } else if (selectedOption === 'spotify') {
+            searchSpotify(searchBar.value);
+        } else if (selectedOption === 'youtube') {
+            searchYouTube(searchBar.value);
+        }
     }
-});
-
-localSearchBtn?.addEventListener('click', () => {
-    searchLocalFiles(searchBar.value);
-});
-
-spotifySearchBtn?.addEventListener('click', () => {
-    searchSpotify(searchBar.value);
-});
-
-youtubeSearchBtn?.addEventListener('click', () => {
-    searchYouTube(searchBar.value);
-});
 
 function linkSpotify() {
     const clientId = 'af120aa8257f44008a5cbf84e95bfa0a';
