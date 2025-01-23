@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Callback</title>
+    <script src="../scripts.js"></script>
+</head>
+<body>
+    <script>
+        // Extract the token and redirect to the main page
+        const hash = window.location.hash.substring(1);
+        const params = new URLSearchParams(hash);
+        const token = params.get('access_token');
+        if (token) {
+            localStorage.setItem('spotify_access_token', token);
+            window.location.href = '../index.html';
+        } else {
+            window.location.href = '../index.html';
+        }
+    </script>
+    <p>Redirecting...</p>
+</body>
+</html>
