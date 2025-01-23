@@ -25,6 +25,10 @@ document.getElementById('link-spotify-btn').addEventListener('click', () => {
     document.getElementById('spotify-search-btn').classList.remove('hidden');
 });
 
+document.getElementById('link-youtube-btn').addEventListener('click', () => {
+    alert("YouTube linked! Ready for search.");
+});
+
 searchBar.addEventListener('input', () => {
     if (searchBar.value) {
         optionsMenu.classList.remove('hidden');
@@ -46,8 +50,8 @@ youtubeSearchBtn.addEventListener('click', () => {
 });
 
 function linkSpotify() {
-    const clientId = 'af120aa8257f44008a5cbf84e95bfa0a';
-    const redirectUri = 'http://localhost:8000/callback';  // This should be a valid URL (e.g., http://localhost:8000/callback)
+    const clientId = 'YOUR_SPOTIFY_CLIENT_ID';
+    const redirectUri = 'YOUR_REDIRECT_URI';  // This should be a valid URL (e.g., http://localhost:8000/callback)
     const scopes = [
         'user-read-playback-state',
         'user-modify-playback-state',
@@ -63,15 +67,14 @@ function linkSpotify() {
 function getAccessToken() {
     const hash = window.location.hash.substring(1);
     const params = new URLSearchParams(hash);
-    const accessToken = params.get('access_token');
-    return accessToken;
+    return params.get('access_token');
 }
 
-const accessToken = getAccessToken();
-if (accessToken) {
+const token = getAccessToken();
+if (token) {
     fetch('https://api.spotify.com/v1/me/playlists', {
         headers: {
-            Authorization: `Bearer ${accessToken}`
+            Authorization: `Bearer ${token}`
         }
     })
     .then(response => response.json())
@@ -87,7 +90,7 @@ if (accessToken) {
             playlistItem.addEventListener('click', () => {
                 fetch(`https://api.spotify.com/v1/playlists/${playlist.id}/tracks`, {
                     headers: {
-                        Authorization: `Bearer ${accessToken}`
+                        Authorization: `Bearer ${token}`
                     }
                 })
                 .then(response => response.json())
@@ -126,7 +129,7 @@ function searchSpotify(query) {
     songList.innerHTML = '';
     fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(query)}&type=track`, {
         headers: {
-            Authorization: `Bearer ${accessToken}`
+            Authorization: `Bearer ${token}`
         }
     })
     .then(response => response.json())
@@ -241,6 +244,7 @@ function nextSong() {
     if (isShuffling) {
         const randomIndex = Math.floor(Math.random() * queue.length);
         loadSong(randomIndex);
+
     } else {
         if (queue.length > 0) {
             loadSong(0);
