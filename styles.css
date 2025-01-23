@@ -110,3 +110,8 @@ ul {
 #youtube-player {
     margin-top: 20px;
 }
+
+#song-list-container {
+    max-height: 200px;
+    overflow-y: auto;
+}
