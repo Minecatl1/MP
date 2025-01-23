@@ -11,11 +11,11 @@
         <h1>Music Player</h1>
         <button id="link-spotify-btn">Link Spotify</button>
         <input type="text" id="search-bar" placeholder="Search for music...">
-        <div id="options-menu">
-            <button id="local-search-btn">Search Local Files</button>
-            <button id="spotify-search-btn" class="hidden">Search Spotify</button>
-            <button id="youtube-search-btn">Search YouTube</button>
-        </div>
+        <select id="search-options">
+            <option value="local">Search Local Files</option>
+            <option value="spotify" class="hidden">Search Spotify</option>
+            <option value="youtube">Search YouTube</option>
+        </select>
         <div id="song-list"></div>
         <div class="controls">
             <button id="play-btn">Play</button>
