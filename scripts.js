@@ -8,11 +8,13 @@ const loopButton = document.getElementById('loop-btn');
 const queueList = document.getElementById('queue-list');
 const searchBar = document.getElementById('search-bar');
 const searchOptions = document.getElementById('search-options');
+const searchButton = document.getElementById('search-btn');
 const localSearchBtn = document.getElementById('local-search-btn');
 const spotifySearchBtn = document.getElementById('spotify-search-btn');
 const youtubeSearchBtn = document.getElementById('youtube-search-btn');
 const youtubePlayer = document.getElementById('youtube-player');
 const youtubeIframe = document.getElementById('youtube-iframe');
+
 
 let playlist = [];
 let queue = [];
@@ -50,6 +52,10 @@ searchBar?.addEventListener('keydown', (event) => {
             searchYouTube(searchBar.value);
         }
     }
+
+searchButton?.addEventListener('click', () => {
+    performSearch();
+});
 
 function linkSpotify() {
     const clientId = 'af120aa8257f44008a5cbf84e95bfa0a';
