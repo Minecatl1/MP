@@ -40,22 +40,31 @@ document.getElementById('link-spotify-btn')?.addEventListener('click', () => {
 document.getElementById('link-youtube-btn')?.addEventListener('click', () => {
     alert("YouTube linked! Ready for search.");
 });
-// search bar search system
+
 searchBar?.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
-        const selectedOption = searchOptions.value;
-        if (selectedOption === 'local') {
-            searchLocalFiles(searchBar.value);
-        } else if (selectedOption === 'spotify') {
-            searchSpotify(searchBar.value);
-        } else if (selectedOption === 'youtube') {
-            searchYouTube(searchBar.value);
-        }
+        performSearch();
+        console.log('Performing search:', selectedOption);
     }
 
 searchButton?.addEventListener('click', () => {
+    console.log('clicked button');
     performSearch();
 });
+
+// search bar search system
+function performSearch() {
+    const selectedOption = searchOptions.value;
+    console.log('Performing search:', selectedOption);
+    if (selectedOption === 'local') {
+        searchLocalFiles(searchBar.value);
+    } else if (selectedOption === 'spotify') {
+        searchSpotify(searchBar.value);
+    } else if (selectedOption === 'youtube') {
+        searchYouTube(searchBar.value);
+    }
+}
+
 
 function linkSpotify() {
     const clientId = 'af120aa8257f44008a5cbf84e95bfa0a';
