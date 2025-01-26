@@ -9,9 +9,6 @@ const queueList = document.getElementById('queue-list');
 const searchBar = document.getElementById('search-bar');
 const searchOptions = document.getElementById('search-options');
 const searchButton = document.getElementById('search-btn');
-const localSearchBtn = document.getElementById('local-search-btn');
-const spotifySearchBtn = document.getElementById('spotify-search-btn');
-const youtubeSearchBtn = document.getElementById('youtube-search-btn');
 const youtubePlayer = document.getElementById('youtube-player');
 const youtubeIframe = document.getElementById('youtube-iframe');
 
@@ -183,14 +180,19 @@ function searchYouTube(query) {
         .then(data => {
             songList.innerHTML = '';
             data.items.forEach(video => {
-                const songItem = document.createElement(
+                const songItem = document.createElement('div');
                 songItem.className = 'song-item';
                 songItem.innerHTML = `
                     <img src="${video.snippet.thumbnails.default.url}" alt="Video Thumbnail">
                     <span>${video.snippet.title}</span>
                 `;
                 songItem.addEventListener('click', () => {
-                    addToQueue(video.id.videoId, video.snippet.title, video.snippet.channelTitle, `https://www.youtube.com/embed/${video.id.videoId}`);
+                    addToQueue({
+                        id: video.id.videoId,
+                        name: video.snippet.title,
+                        author: video.snippet.channelTitle,
+                        previewUrl: `https://www.youtube.com/embed/${video.id.videoId}`
+                    });
                 });
                 songList.appendChild(songItem);
             });
@@ -198,8 +200,8 @@ function searchYouTube(query) {
         .catch(error => console.error('Error fetching YouTube videos:', error));
 }
 
-function addToQueue(id, name, author, previewUrl) {
-    queue.push({ id, name, author, previewUrl });
+function addToQueue(track) {
+    queue.push(track);
     updateQueueDisplay();
 }
 
@@ -253,7 +255,7 @@ loopButton?.addEventListener('click', () => {
 
 function loadSong(index) {
     const track = queue[index];
-    if (track.previewUrl.includes('youtube.com')) {
+    if (track.previewUrl && track.previewUrl.includes('youtube.com')) {
         youtubePlayer.classList.remove('hidden');
         youtubeIframe.src = track.previewUrl + '?autoplay=1';
         audio.pause();
@@ -273,6 +275,11 @@ function nextSong() {
     } else {
         if (queue.length > 0) {
             loadSong(0);
+        } else if (isLooping) {
+            currentSongIndex = 0;
+            loadSong(currentSongIndex);
+        } else {
+            audio.pause();
         }
     }
 }
