@@ -15,7 +15,6 @@ const youtubeSearchBtn = document.getElementById('youtube-search-btn');
 const youtubePlayer = document.getElementById('youtube-player');
 const youtubeIframe = document.getElementById('youtube-iframe');
 
-
 let playlist = [];
 let queue = [];
 let currentSongIndex = 0;
@@ -44,18 +43,15 @@ document.getElementById('link-youtube-btn')?.addEventListener('click', () => {
 searchBar?.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
         performSearch();
-        console.log('Performing search:', selectedOption);
     }
+});
 
 searchButton?.addEventListener('click', () => {
-    console.log('clicked button');
     performSearch();
 });
 
-// search bar search system
 function performSearch() {
     const selectedOption = searchOptions.value;
-    console.log('Performing search:', selectedOption);
     if (selectedOption === 'local') {
         searchLocalFiles(searchBar.value);
     } else if (selectedOption === 'spotify') {
@@ -64,7 +60,6 @@ function performSearch() {
         searchYouTube(searchBar.value);
     }
 }
-
 
 function linkSpotify() {
     const clientId = 'af120aa8257f44008a5cbf84e95bfa0a';
@@ -83,12 +78,6 @@ function linkSpotify() {
 
 function getAccessToken() {
     return localStorage.getItem('spotify_access_token');
-}
-
-function getAccessToken() {
-    const hash = window.location.hash.substring(1);
-    const params = new URLSearchParams(hash);
-    return params.get('access_token');
 }
 
 const token = getAccessToken();
@@ -117,7 +106,12 @@ if (token) {
                 .then(response => response.json())
                 .then(tracksData => {
                     tracksData.items.forEach(track => {
-                        addToQueue(track.track.id, track.track.name, track.track.artists[0].name, track.track.preview_url);
+                        addToQueue({
+                            id: track.track.id,
+                            name: track.track.name,
+                            author: track.track.artists[0].name,
+                            previewUrl: track.track.preview_url
+                        });
                     });
                 })
                 .catch(error => console.error('Error fetching playlist tracks:', error));
@@ -129,6 +123,7 @@ if (token) {
 }
 
 function searchLocalFiles(query) {
+    console.log('Searching local files for:', query);
     songList.innerHTML = '';
     playlist.forEach((song, index) => {
         if (song.name.toLowerCase().includes(query.toLowerCase()) || song.author.toLowerCase().includes(query.toLowerCase())) {
@@ -139,7 +134,12 @@ function searchLocalFiles(query) {
                 <span>${song.name} - ${song.author}</span>
             `;
             songItem.addEventListener('click', () => {
-                addToQueue(index);
+                addToQueue({
+                    id: index,
+                    name: song.name,
+                    author: song.author,
+                    previewUrl: song.path
+                });
             });
             songList.appendChild(songItem);
         }
@@ -163,7 +163,12 @@ function searchSpotify(query) {
                 <span>${track.name} - ${track.artists[0].name}</span>
             `;
             songItem.addEventListener('click', () => {
-                addToQueue(track.id, track.name, track.artists[0].name, track.preview_url);
+                addToQueue({
+                    id: track.id,
+                    name: track.name,
+                    author: track.artists[0].name,
+                    previewUrl: track.preview_url
+                });
             });
             songList.appendChild(songItem);
         });
@@ -178,7 +183,7 @@ function searchYouTube(query) {
         .then(data => {
             songList.innerHTML = '';
             data.items.forEach(video => {
-                const songItem = document.createElement('div');
+                const songItem = document.createElement(
                 songItem.className = 'song-item';
                 songItem.innerHTML = `
                     <img src="${video.snippet.thumbnails.default.url}" alt="Video Thumbnail">
