@@ -59,6 +59,14 @@ volumeSlider?.addEventListener('input', (event) => {
     youtubeIframe.contentWindow.postMessage(`{"event":"command","func":"setVolume","args":[${event.target.value * 100}]}`, '*');
 });
 
+progressBar?.addEventListener('click', (event) => {
+    const rect = progressBar.getBoundingClientRect();
+    const offsetX = event.clientX - rect.left;
+    const newTime = (offsetX / progressBar.offsetWidth) * audio.duration;
+    audio.currentTime = newTime;
+    youtubeIframe.contentWindow.postMessage(`{"event":"command","func":"seekTo","args":[${newTime}, true]}`, '*');
+});
+
 document.addEventListener('keydown', (event) => {
     if (event.code === 'Space') {
         if (audio.paused) {
