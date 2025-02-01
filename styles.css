@@ -112,7 +112,7 @@ ul {
 }
 
 #song-list-container {
-    max-height: 200px;
+    max-height: calc(100vh - 400px); /* Adjust based on the overall container height */
     overflow-y: auto;
 }
 
