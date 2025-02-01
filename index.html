@@ -10,6 +10,7 @@
     <div class="container">
         <h1>Music Player</h1>
         <button id="link-spotify-btn">Link Spotify</button>
+        <button id="link-youtube-btn">Link YouTube</button>
         <input type="text" id="search-bar" placeholder="Search for music...">
         <select id="search-options">
             <option value="local">Search Local Files</option>
@@ -17,13 +18,27 @@
             <option value="youtube">Search YouTube</option>
         </select>
         <button id="search-btn">Search</button>
-        <div id="song-list"></div>
+        <div id="song-list-container">
+            <div id="song-list"></div>
+        </div>
         <div class="controls">
             <button id="play-btn">Play</button>
             <button id="stop-btn">Stop</button>
             <button id="next-btn">Next</button>
             <button id="shuffle-btn">Shuffle Off</button>
             <button id="loop-btn">Loop Off</button>
+            <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="1">
+        </div>
+        <div id="now-playing">
+            <img id="now-playing-art" src="" alt="Album Art">
+            <div id="now-playing-details">
+                <h3 id="now-playing-title">Title</h3>
+                <p id="now-playing-author">Author</p>
+            </div>
+        </div>
+        <progress id="progress-bar" max="100" value="0"></progress>
+        <div id="time-info">
+            <span id="current-time">0:00</span> / <span id="duration-time">0:00</span>
         </div>
         <h2>Queue</h2>
         <ul id="queue-list"></ul>
@@ -31,7 +46,7 @@
             <iframe id="youtube-iframe" width="560" height="315" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
     </div>
-    <script src="spotify_auth.js"></script>
     <script src="scripts.js"></script>
+    <script src="spotify_auth.js"></script>
 </body>
 </html>

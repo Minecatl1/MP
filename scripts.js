@@ -5,12 +5,19 @@ const stopButton = document.getElementById('stop-btn');
 const nextButton = document.getElementById('next-btn');
 const shuffleButton = document.getElementById('shuffle-btn');
 const loopButton = document.getElementById('loop-btn');
+const volumeSlider = document.getElementById('volume-slider');
+const progressBar = document.getElementById('progress-bar');
 const queueList = document.getElementById('queue-list');
 const searchBar = document.getElementById('search-bar');
 const searchOptions = document.getElementById('search-options');
 const searchButton = document.getElementById('search-btn');
 const youtubePlayer = document.getElementById('youtube-player');
 const youtubeIframe = document.getElementById('youtube-iframe');
+const nowPlayingTitle = document.getElementById('now-playing-title');
+const nowPlayingAuthor = document.getElementById('now-playing-author');
+const nowPlayingArt = document.getElementById('now-playing-art');
+const currentTimeElem = document.getElementById('current-time');
+const durationTimeElem = document.getElementById('duration-time');
 
 let playlist = [];
 let queue = [];
@@ -45,6 +52,33 @@ searchBar?.addEventListener('keydown', (event) => {
 
 searchButton?.addEventListener('click', () => {
     performSearch();
+});
+
+volumeSlider?.addEventListener('input', (event) => {
+    audio.volume = event.target.value;
+    youtubeIframe.contentWindow.postMessage(`{"event":"command","func":"setVolume","args":[${event.target.value * 100}]}`, '*');
+});
+
+document.addEventListener('keydown', (event) => {
+    if (event.code === 'Space') {
+        if (audio.paused) {
+            audio.play();
+        } else {
+            audio.pause();
+        }
+    } else if (event.code === 'ArrowRight') {
+        nextSong();
+    } else if (event.code === 'ArrowLeft') {
+        currentSongIndex = (currentSongIndex - 1 + queue.length) % queue.length;
+        loadSong(currentSongIndex);
+    }
+});
+
+audio.addEventListener('timeupdate', () => {
+    const progress = (audio.currentTime / audio.duration) * 100;
+    progressBar.value = progress;
+    currentTimeElem.textContent = formatTime(audio.currentTime);
+    durationTimeElem.textContent = formatTime(audio.duration);
 });
 
 function performSearch() {
@@ -255,6 +289,10 @@ loopButton?.addEventListener('click', () => {
 
 function loadSong(index) {
     const track = queue[index];
+    nowPlayingTitle.textContent = track.name;
+    nowPlayingAuthor.textContent = track.author;
+    nowPlayingArt.src = track.previewUrl.replace('.mp3', '.jpg').replace('.wav', '.jpg'); // Assuming local files have corresponding images
+
     if (track.previewUrl && track.previewUrl.includes('youtube.com')) {
         youtubePlayer.classList.remove('hidden');
         youtubeIframe.src = track.previewUrl + '?autoplay=1';
@@ -282,4 +320,10 @@ function nextSong() {
             audio.pause();
         }
     }
+}
+
+function formatTime(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = Math.floor(seconds % 60).toString().padStart(2, '0');
+    return `${minutes}:${remainingSeconds}`;
 }

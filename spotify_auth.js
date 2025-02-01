@@ -1,5 +1,5 @@
 const clientId = 'af120aa8257f44008a5cbf84e95bfa0a';
-const redirectUri = 'http://localhost:8000/callback';  // This should be a valid URL (e.g., http://localhost:8000/callback)
+const redirectUri = 'https://minecatl1.github.io/MP/callback';  // This should be a valid URL (e.g., http://localhost:8000/callback)
 const scopes = [
     'user-read-playback-state',
     'user-modify-playback-state',
