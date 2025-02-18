@@ -7,43 +7,53 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
+    <div class="sidebar">
         <h1>Music Player</h1>
-        <button id="link-spotify-btn">Link Spotify</button>
-        <button id="link-youtube-btn">Link YouTube</button>
-        <input type="text" id="search-bar" placeholder="Search for music...">
-        <select id="search-options">
-            <option value="local">Search Local Files</option>
-            <option value="spotify" class="hidden">Search Spotify</option>
-            <option value="youtube">Search YouTube</option>
-        </select>
+        <button id="home-btn">Home</button>
         <button id="search-btn">Search</button>
+        <button id="library-btn">Your Library</button>
+        <button id="create-playlist-btn">Create Playlist</button>
+        <button id="view-liked-songs-btn">Liked Songs</button>
+    </div>
+    <div class="main-content">
+        <div class="search-container">
+            <input type="text" id="search-bar" placeholder="Search for music...">
+            <select id="search-options">
+                <option value="local">Search Local Files</option>
+                <option value="spotify" class="hidden">Search Spotify</option>
+                <option value="youtube">Search YouTube</option>
+            </select>
+            <button id="search-btn">Search</button>
+            <select id="sort-options">
+                <option value="none">Sort by</option>
+                <option value="author">Author</option>
+            </select>
+        </div>
         <div id="song-list-container">
             <div id="song-list"></div>
         </div>
-        <div class="controls">
-            <button id="play-btn">Play</button>
-            <button id="stop-btn">Stop</button>
-            <button id="next-btn">Next</button>
-            <button id="shuffle-btn">Shuffle Off</button>
-            <button id="loop-btn">Loop Off</button>
-            <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="1">
-        </div>
-        <div id="now-playing">
+    </div>
+    <div class="now-playing-bar">
+        <div class="now-playing-details">
             <img id="now-playing-art" src="" alt="Album Art">
-            <div id="now-playing-details">
+            <div>
                 <h3 id="now-playing-title">Title</h3>
                 <p id="now-playing-author">Author</p>
             </div>
         </div>
-        <progress id="progress-bar" max="100" value="0"></progress>
-        <div id="time-info">
-            <span id="current-time">0:00</span> / <span id="duration-time">0:00</span>
+        <div class="controls">
+            <button id="prev-btn">Prev</button>
+            <button id="play-btn">Play</button>
+            <button id="next-btn">Next</button>
         </div>
-        <h2>Queue</h2>
-        <ul id="queue-list"></ul>
-        <div id="youtube-player" class="hidden">
-            <iframe id="youtube-iframe" width="560" height="315" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="progress-container">
+            <progress id="progress-bar" max="100" value="0"></progress>
+            <div id="time-info">
+                <span id="current-time">0:00</span> / <span id="duration-time">0:00</span>
+            </div>
+        </div>
+        <div class="volume-container">
+            <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="1">
         </div>
     </div>
     <script src="scripts.js"></script>

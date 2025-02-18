@@ -11,6 +11,9 @@ const queueList = document.getElementById('queue-list');
 const searchBar = document.getElementById('search-bar');
 const searchOptions = document.getElementById('search-options');
 const searchButton = document.getElementById('search-btn');
+const sortOptions = document.getElementById('sort-options');
+const viewLikedSongsBtn = document.getElementById('view-liked-songs-btn');
+const likeButton = document.getElementById('like-btn');
 const youtubePlayer = document.getElementById('youtube-player');
 const youtubeIframe = document.getElementById('youtube-iframe');
 const nowPlayingTitle = document.getElementById('now-playing-title');
@@ -40,10 +43,6 @@ document.getElementById('link-spotify-btn')?.addEventListener('click', () => {
     document.getElementById('spotify-search-btn').classList.remove('hidden');
 });
 
-document.getElementById('link-youtube-btn')?.addEventListener('click', () => {
-    alert("YouTube linked! Ready for search.");
-});
-
 searchBar?.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
         performSearch();
@@ -52,6 +51,20 @@ searchBar?.addEventListener('keydown', (event) => {
 
 searchButton?.addEventListener('click', () => {
     performSearch();
+});
+
+sortOptions?.addEventListener('change', () => {
+    if (sortOptions.value === 'author') {
+        sortByAuthor();
+    }
+});
+
+viewLikedSongsBtn?.addEventListener('click', () => {
+    viewLikedSongs();
+});
+
+likeButton?.addEventListener('click', () => {
+    likeCurrentSong();
 });
 
 volumeSlider?.addEventListener('input', (event) => {
